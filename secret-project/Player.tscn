@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8rufvgd2tetj"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://bjp5qiwsdxtxa" path="res://Materials/Player_PhysicsMat.tres" id="1_e80uo"]
+[ext_resource type="Script" uid="uid://duq5kqgh2ebxe" path="res://player.gd" id="1_xhfnw"]
+[ext_resource type="Material" uid="uid://ngoidhmh8vmy" path="res://Materials/Red_Mat.tres" id="2_kne1u"]
+[ext_resource type="Material" uid="uid://bw1rjluvsbwor" path="res://Materials/Black_Mat.tres" id="2_kpjcp"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kpjcp"]
+material = ExtResource("2_kne1u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kne1u"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e80uo"]
+material = SubResource("StandardMaterial3D_kne1u")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xhfnw"]
+
+[node name="Player" type="RigidBody3D"]
+physics_material_override = ExtResource("1_e80uo")
+lock_rotation = true
+script = ExtResource("1_xhfnw")
+
+[node name="PlayerMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_kpjcp")
+
+[node name="FaceMesh" type="MeshInstance3D" parent="PlayerMesh"]
+transform = Transform3D(0.73382163, 0, 0, 0, 0.45474952, 0, 0, 0, 0.430964, 0, 0.40594557, -0.37394857)
+material_override = ExtResource("2_kpjcp")
+mesh = SubResource("BoxMesh_e80uo")
+skeleton = NodePath("../..")
+
+[node name="TwistPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_xhfnw")
