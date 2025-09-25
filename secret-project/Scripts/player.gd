@@ -24,9 +24,12 @@ var parent : Node3D
 @onready var groundCheck: ShapeCast3D = $GroundCheckCast
 @onready var velLabel = $"../CanvasLayer/Vel Label"
 @onready var speedLabel = $"../CanvasLayer/Speed Label"
+var level
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	level = get_parent()
+	parent = level
 
 
 func _process(delta: float) -> void:
@@ -101,14 +104,29 @@ func MovementHandler(delta: float):
 
 func GroundHandler():
 	if !groundCheck.is_colliding():
+		if parent != level:
+			DetachParent()
 		return
 	var ground := groundCheck.get_collider(0)
 	
-	print("Ground: " + ground.name)
+	#print("Ground: " + ground.name)
 	
-	if ground.is_in_group("Moveable"):
-		parent = ground
-		print("Parent: " + ground.name)
+	if ground.is_in_group("Movable") && parent != ground:
+		SetNewParent(ground)
+
+func SetNewParent(newParent):
+	parent = newParent	
+	get_parent().remove_child(self)
+	
+	parent.add_child(self)
+	transform.origin -= parent.global_position
+	print("Parent: " + parent.name)
+
+func DetachParent():
+	transform.origin += parent.global_position
+	parent = level
+	get_parent().remove_child(self)
+	parent.add_child(self)
 
 func Jump() -> void:
 	if groundCheck.is_colliding():

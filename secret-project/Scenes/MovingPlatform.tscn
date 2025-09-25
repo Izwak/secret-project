@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dujkfnwuny20h" path="res://Scripts/MovingPlatform.gd" id="1_k502f"]
 
-[node name="Platfrom" type="Node3D" groups=["Movable"]]
+[node name="Platfrom" type="Node3D"]
 script = ExtResource("1_k502f")
 
 [node name="Moveable" type="Node3D" parent="."]
 
-[node name="Box" type="CSGBox3D" parent="Moveable"]
+[node name="Box" type="CSGBox3D" parent="Moveable" groups=["Movable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 use_collision = true
 size = Vector3(2, 0.5, 2)
