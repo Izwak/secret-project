@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://c8rufvgd2tetj"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://bjp5qiwsdxtxa" path="res://Materials/Player_PhysicsMat.tres" id="1_e80uo"]
+[ext_resource type="Script" uid="uid://duq5kqgh2ebxe" path="res://Scripts/player.gd" id="1_xhfnw"]
+[ext_resource type="Material" uid="uid://ngoidhmh8vmy" path="res://Materials/Red_Mat.tres" id="2_kne1u"]
+[ext_resource type="Material" uid="uid://bw1rjluvsbwor" path="res://Materials/Black_Mat.tres" id="2_kpjcp"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kpjcp"]
+material = ExtResource("2_kne1u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kne1u"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e80uo"]
+material = SubResource("StandardMaterial3D_kne1u")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xhfnw"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dewec"]
+radius = 0.45
+
+[node name="Player" type="RigidBody3D"]
+physics_material_override = ExtResource("1_e80uo")
+lock_rotation = true
+script = ExtResource("1_xhfnw")
+
+[node name="PlayerMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_kpjcp")
+
+[node name="FaceMesh" type="MeshInstance3D" parent="PlayerMesh"]
+transform = Transform3D(0.73382163, 0, 0, 0, 0.45474952, 0, 0, 0, 0.430964, 0, 0.40594557, -0.37394857)
+material_override = ExtResource("2_kpjcp")
+mesh = SubResource("BoxMesh_e80uo")
+skeleton = NodePath("../..")
+
+[node name="TwistPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0, 0, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="TwistPivot/PitchPivot"]
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 1.4901161e-08, 0, -1.4901161e-08, 1.0000001, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_xhfnw")
+
+[node name="GroundCheckCast" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_dewec")
+target_position = Vector3(0, -0.65, 0)
