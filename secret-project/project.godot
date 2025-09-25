@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Secet Project"
-run/main_scene="res://MainSceen.tscn"
+run/main_scene="res://Scenes/MainSceen.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[global_group]
+
+Movable=""
 
 [input]
 

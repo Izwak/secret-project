@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://26ynnxhdd3me"]
+
+[ext_resource type="Script" uid="uid://dujkfnwuny20h" path="res://Scripts/MovingPlatform.gd" id="1_k502f"]
+
+[node name="Platfrom" type="Node3D" groups=["Movable"]]
+script = ExtResource("1_k502f")
+
+[node name="Moveable" type="Node3D" parent="."]
+
+[node name="Box" type="CSGBox3D" parent="Moveable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+use_collision = true
+size = Vector3(2, 0.5, 2)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
