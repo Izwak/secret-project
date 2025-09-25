@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	MovementHandler(delta)
 	
-	GroundHandler()
+	GroundHandler(delta)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -67,6 +67,8 @@ func MovementHandler(delta: float):
 		var desiredVel = horizontalVel + (twitstPivot.basis * inputDir * accelForce / mass) * delta
 		
 		# Already at or above max don’t accelerate further
+		if desiredVel.length() < horizontalVel.length():
+			apply_central_force(twitstPivot.basis * inputDir * accelForce)
 		if desiredVel.length() > maxSpeed:
 			var newSpeed
 			if horizontalVel.length() < maxSpeed:
@@ -102,31 +104,45 @@ func MovementHandler(delta: float):
 	speedLabel.text = "Speed: " + str(Vector3(linear_velocity.x, 0, linear_velocity.z).length())
 
 
-func GroundHandler():
+func GroundHandler(delta: float):
 	if !groundCheck.is_colliding():
 		if parent != level:
-			DetachParent()
+			DetachParent(delta)
 		return
 	var ground := groundCheck.get_collider(0)
 	
-	#print("Ground: " + ground.name)
-	
 	if ground.is_in_group("Movable") && parent != ground:
 		SetNewParent(ground)
+	elif !ground.is_in_group("Movable") && parent != level:
+		DetachParent(delta)
+		print("detached")
+
 
 func SetNewParent(newParent):
-	parent = newParent	
+	var current_global = global_transform
 	get_parent().remove_child(self)
 	
+	parent = newParent
 	parent.add_child(self)
-	transform.origin -= parent.global_position
+	global_transform = current_global
 	print("Parent: " + parent.name)
 
-func DetachParent():
-	transform.origin += parent.global_position
+
+func DetachParent(delta: float):
+	var current_global = global_transform
+	
+	var platform = parent.get_parent().get_parent()
+	#var platformScript = platform.get_script()
+	print("Platform: " + platform.name)
+	if platform is MovingPlatform:
+		apply_central_force(platform.velocity * mass / delta)
+		print("Applied Vel: " + str(platform.velocity))
+	else:
+		print("NUH UH")
 	parent = level
 	get_parent().remove_child(self)
 	parent.add_child(self)
+	global_transform = current_global
 
 func Jump() -> void:
 	if groundCheck.is_colliding():

@@ -6,7 +6,7 @@ size = Vector3(0.5, 0.5, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_8kmyn"]
 size = Vector3(0.5, 0.5, 0.5)
 
-[node name="Node3D" type="Node3D"]
+[node name="PhysicsBox(8)" type="Node3D"]
 
 [node name="Physics Box" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.25, -0.25)
@@ -86,84 +86,4 @@ mass = 0.3
 mesh = SubResource("BoxMesh_2f6ld")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Physics Box8"]
-shape = SubResource("BoxShape3D_8kmyn")
-
-[node name="Physics Box9" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.25, -0.25)
-mass = 0.3
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Physics Box9"]
-mesh = SubResource("BoxMesh_2f6ld")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Physics Box9"]
-shape = SubResource("BoxShape3D_8kmyn")
-
-[node name="Physics Box10" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.25, -0.25)
-mass = 0.3
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Physics Box10"]
-mesh = SubResource("BoxMesh_2f6ld")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Physics Box10"]
-shape = SubResource("BoxShape3D_8kmyn")
-
-[node name="Physics Box11" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.25, -0.75)
-mass = 0.3
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Physics Box11"]
-mesh = SubResource("BoxMesh_2f6ld")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Physics Box11"]
-shape = SubResource("BoxShape3D_8kmyn")
-
-[node name="Physics Box12" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.25, -0.75)
-mass = 0.3
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Physics Box12"]
-mesh = SubResource("BoxMesh_2f6ld")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Physics Box12"]
-shape = SubResource("BoxShape3D_8kmyn")
-
-[node name="Physics Box13" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.75, -0.25)
-mass = 0.3
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Physics Box13"]
-mesh = SubResource("BoxMesh_2f6ld")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Physics Box13"]
-shape = SubResource("BoxShape3D_8kmyn")
-
-[node name="Physics Box14" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.75, -0.25)
-mass = 0.3
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Physics Box14"]
-mesh = SubResource("BoxMesh_2f6ld")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Physics Box14"]
-shape = SubResource("BoxShape3D_8kmyn")
-
-[node name="Physics Box15" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.75, -0.75)
-mass = 0.3
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Physics Box15"]
-mesh = SubResource("BoxMesh_2f6ld")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Physics Box15"]
-shape = SubResource("BoxShape3D_8kmyn")
-
-[node name="Physics Box16" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.75, -0.75)
-mass = 0.3
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Physics Box16"]
-mesh = SubResource("BoxMesh_2f6ld")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Physics Box16"]
 shape = SubResource("BoxShape3D_8kmyn")

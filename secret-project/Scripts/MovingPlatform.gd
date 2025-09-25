@@ -1,3 +1,5 @@
+class_name MovingPlatform
+
 extends Node3D
 
 @export var movePoints: Array[Node3D]
@@ -13,7 +15,7 @@ var velocity := Vector3.ZERO
 
 func _physics_process(delta: float) -> void:
 	
-	if movePoints.size() <= 2:
+	if movePoints.size() < 2:
 		return
 	if timer.time_left > 0:
 		return
@@ -23,6 +25,7 @@ func _physics_process(delta: float) -> void:
 	
 	if difference.length() < speed * delta:
 		movable.global_position = movePoints[targetIndex].global_position
+		velocity = Vector3.ZERO
 		timer.start(delay)
 	else:
 		movable.global_translate(velocity * delta)

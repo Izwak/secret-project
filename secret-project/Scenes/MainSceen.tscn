@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c8rufvgd2tetj" path="res://Scenes/Player.tscn" id="1_wu2u5"]
 [ext_resource type="PackedScene" uid="uid://26ynnxhdd3me" path="res://Scenes/MovingPlatform.tscn" id="3_bjfle"]
-[ext_resource type="PackedScene" uid="uid://4udqtnb5qm4y" path="res://Scenes/PhysicsBlocks8.tscn" id="3_kirsx"]
+[ext_resource type="PackedScene" uid="uid://4udqtnb5qm4y" path="res://Scenes/PhysicsBlocks(8).tscn" id="3_kirsx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6mxpk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -38,6 +38,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 use_collision = true
 size = Vector3(16, 0.5, 16)
 
+[node name="CSGBox3D7" type="CSGBox3D" parent="World Objects/World Static Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, -0.25, -8)
+use_collision = true
+size = Vector3(11, 0.5, 8)
+
 [node name="CSGBox3D" type="CSGBox3D" parent="World Objects/World Static Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, -3)
 use_collision = true
@@ -59,7 +64,7 @@ use_collision = true
 size = Vector3(2, 2, 2)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="World Objects/World Static Objects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.625, -7.875)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.625, -7.875)
 use_collision = true
 size = Vector3(4, 3.25, 0.25)
 
@@ -67,24 +72,6 @@ size = Vector3(4, 3.25, 0.25)
 operation = 2
 
 [node name="World Physics Objects" type="Node3D" parent="World Objects"]
-
-[node name="Node3D3" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
-
-[node name="Node3D4" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -4)
-
-[node name="Node3D5" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -4)
-
-[node name="Node3D6" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -4)
-
-[node name="Node3D7" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -4)
-
-[node name="Node3D8" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -4)
 
 [node name="Platform" parent="World Objects/World Physics Objects" node_paths=PackedStringArray("movePoints") instance=ExtResource("3_bjfle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -7)
@@ -100,6 +87,70 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 3)
 
 [node name="Node4" type="Node3D" parent="World Objects/World Physics Objects/Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.75, 0)
+
+[node name="Platfrom2" parent="World Objects/World Physics Objects" node_paths=PackedStringArray("movePoints") instance=ExtResource("3_bjfle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -3)
+movePoints = [NodePath("Node3D"), NodePath("Node3D2")]
+
+[node name="Node3D" type="Node3D" parent="World Objects/World Physics Objects/Platfrom2"]
+
+[node name="Node3D2" type="Node3D" parent="World Objects/World Physics Objects/Platfrom2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="Platfrom3" parent="World Objects/World Physics Objects" node_paths=PackedStringArray("movePoints") instance=ExtResource("3_bjfle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 3)
+movePoints = [NodePath("Node3D"), NodePath("Node3D2")]
+
+[node name="Node3D" type="Node3D" parent="World Objects/World Physics Objects/Platfrom3"]
+
+[node name="Node3D2" type="Node3D" parent="World Objects/World Physics Objects/Platfrom3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="Platfrom4" parent="World Objects/World Physics Objects" node_paths=PackedStringArray("movePoints") instance=ExtResource("3_bjfle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -9)
+movePoints = [NodePath("Node3D"), NodePath("Node3D2")]
+speed = 15.0
+
+[node name="Node3D" type="Node3D" parent="World Objects/World Physics Objects/Platfrom4"]
+
+[node name="Node3D2" type="Node3D" parent="World Objects/World Physics Objects/Platfrom4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
+
+[node name="PhysicsBox(8)" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -6)
+
+[node name="PhysicsBox(8)2" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -7)
+
+[node name="PhysicsBox(8)3" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -8)
+
+[node name="PhysicsBox(8)4" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -9)
+
+[node name="PhysicsBox(8)5" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1, -6)
+
+[node name="PhysicsBox(8)6" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1, -7)
+
+[node name="PhysicsBox(8)7" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1, -8)
+
+[node name="PhysicsBox(8)8" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1, -9)
+
+[node name="PhysicsBox(8)9" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, -6)
+
+[node name="PhysicsBox(8)10" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, -7)
+
+[node name="PhysicsBox(8)11" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, -8)
+
+[node name="PhysicsBox(8)12" parent="World Objects/World Physics Objects" instance=ExtResource("3_kirsx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, -9)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
